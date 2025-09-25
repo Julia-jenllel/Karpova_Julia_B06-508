@@ -3,7 +3,7 @@ import random
 
 screen = turtle.Screen()
 screen.bgcolor("darkblue")
-screen.title("Горный пейзаж с цветами")
+screen.title("Цветочный карнавал")
 screen.setup(1000, 800)
 
 mountain_turtle = turtle.Turtle()
@@ -111,27 +111,6 @@ for _ in range(50):
     flower_turtle.color(random.choice(flower_colors))
     flower_type(x, y, size)
 
-for _ in range(30):
-    x = random.randint(-480, 480)
-    y = random.randint(-300, -200)
-    size = random.randint(5, 12)
-    flower_turtle.color("red")
-    draw_flower(x, y, size)
-
-for i in range(15):
-    x = -400 + random.randint(-20, 20)
-    y = -220 + random.randint(-15, 15)
-    size = random.randint(10, 18)
-    flower_turtle.color("red")
-    draw_flower2(x, y, size)
-
-for i in range(15):
-    x = 400 + random.randint(-20, 20)
-    y = -220 + random.randint(-15, 15)
-    size = random.randint(10, 18)
-    flower_turtle.color("red")
-    draw_flower3(x, y, size)
-
 flower_turtle.hideturtle()
 
 
@@ -149,4 +128,5 @@ sun_turtle.hideturtle()
 turtle.done()
      
  
+
 
