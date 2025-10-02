@@ -1,0 +1,58 @@
+import pygame
+pygame.init()
+font = pygame.font.SysFont(None, 24)
+
+screen = pygame.display.set_mode((960, 760))
+pygame.display.set_caption( "3 картинка")
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+         running = False   
+    #мужчина   
+    screen.fill((170, 238, 255)) 
+    pygame.draw.rect(screen, (55,200,113), (0,380,960,380)) 
+    pygame.draw.ellipse(screen, (167,147,172), (240,190,140,380))
+    pygame.draw.circle(screen, (244,227,215), (310,150), 50)
+    pygame.draw.line(screen, (0,0,0), (270,230), (155,410), 1)  
+    pygame.draw.line(screen, (0,0,0), (350,230), (470,390), 1)  
+    pygame.draw.line(screen, (0,0,0), (280,525), (240,675), 1)  
+    pygame.draw.line(screen, (0,0,0), (240,675), (200,675), 1)  
+    pygame.draw.line(screen, (0,0,0), (340,525), (365,675), 1)  
+    pygame.draw.line(screen, (0,0,0), (365,675), (405,675), 1)
+
+    #мороженное
+    pygame.draw.polygon(screen, (255,204,0), [(170,415),(160,330),(90,375)])
+    pygame.draw.circle(screen, (255,0,0), (135,330), 25)
+    pygame.draw.circle(screen, (85,0,0), (95,350), 25)
+    pygame.draw.circle(screen, (255,255,255), (105,320), 25)
+
+
+    #женщина
+    pygame.draw.polygon(screen, (255,85,221), [(640,190),(540,570),(720,570)])
+    pygame.draw.circle(screen, (244,227,215), (640,180), 50)
+    pygame.draw.line(screen, (0,0,0), (465,385), (625,250), 1)  
+    pygame.draw.line(screen, (0,0,0), (650,250), (715,307), 1)  
+    pygame.draw.line(screen, (0,0,0), (715,307), (775,270), 1)   
+    pygame.draw.line(screen, (0,0,0), (605,550), (605,665), 1)  
+    pygame.draw.line(screen, (0,0,0), (605,665), (575,665), 1)  
+    pygame.draw.line(screen, (0,0,0), (660,550), (660,665), 1)  
+    pygame.draw.line(screen, (0,0,0), (660,665), (690,665), 1)  
+   
+    
+    #шарик
+    pygame.draw.line(screen, (0,0,0), (770,302), (800,185), 1)  
+    pygame.draw.polygon(screen, (255,0,0), [(800, 185),(792,102),(858,121)])
+    pygame.draw.circle(screen, (255,0,0), (812,96), 23)
+    pygame.draw.circle(screen, (255,0,0), (845,104), 23)
+    
+
+    mx, my = pygame.mouse.get_pos()
+    text = font.render(f"x: {mx}, y: {my}", True, (0, 0, 0))
+    screen.blit(text, (10, 10))
+
+    pygame.display.flip()
+    
+
+pygame.quit()
