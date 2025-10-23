@@ -1,0 +1,102 @@
+import pygame
+import random
+
+pygame.init()
+screen = pygame.display.set_mode((800, 500))
+pygame.display.set_caption("Волк ловит яйца")
+screen_width = 800
+screen_height = 500
+
+eggpage = pygame.image.load("egg.png").convert()
+catch = pygame.mixer.Sound("catch.wav")
+backeggspage = pygame.image.load("backfone.png")
+basketpage = pygame.image.load("basket.png").convert()
+
+basketpage = pygame.transform.scale(basketpage, (80, 80))
+eggpage = pygame.transform.scale(eggpage, (75, 45))
+
+basketpage.set_colorkey((255, 255, 255)) 
+eggpage.set_colorkey((255, 255, 255)) 
+
+backeggspage = pygame.transform.scale(backeggspage, (screen_width, screen_height))
+
+font = pygame.font.SysFont(None, 36)  
+
+running = True
+clock = pygame.time.Clock()
+
+balls = [] 
+spawn_interval = 2000  
+last_spawn_time = 0
+
+score = 0
+missed = 0
+
+basket_x = 350
+basket_y = 350
+
+while running:
+    current_time = pygame.time.get_ticks()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        
+        
+    if current_time - last_spawn_time > spawn_interval:
+        x = random.randint(20, 580) 
+        y = 0  
+        speed_x =  random.choice([-4, -3, -2, -1, 0, 1, 2, 3, 4])
+        balls.append([x, y, speed_x])
+        last_spawn_time = current_time
+
+        
+    basket_speed = 8
+
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_LEFT]:
+        basket_x -= basket_speed
+  
+    if keys[pygame.K_RIGHT]:
+        basket_x += basket_speed
+    
+    if keys[pygame.K_UP]:
+        basket_y -= basket_speed
+    
+    if keys[pygame.K_DOWN]:
+        basket_y += basket_speed
+
+    sballs = []
+    for ball in balls:
+        x, y, speed_x = ball
+        ball[1] += 2
+        ball[0] += ball[2]
+        dx = basket_x - x
+        dy = basket_y - y
+        distance = (dx**2 + dy**2)**0.5
+        if distance < 30:  
+            score += 1
+            catch.play()  
+        elif y > 400:  
+            missed += 1
+            if missed >= 3:
+                print("Вы проиграли! 3 яйца разбились!")
+                running = False
+        else:
+            sballs.append(ball) 
+    
+    balls = sballs
+    screen.blit(backeggspage, (0, 0))
+    for ball in balls:
+        x, y, speed_x = ball
+        screen.blit(eggpage, (x - 30, y - 22))
+    
+    screen.blit(basketpage, (basket_x - 40, basket_y - 40))
+    score_text = font.render(f"Счет: {score}", True, (255, 255, 255))
+    missed_text = font.render(f"Пропущено: {missed}/3", True, (255, 255, 255))
+    screen.blit(score_text, (15, 15))
+    screen.blit(missed_text, (15, 55))
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
