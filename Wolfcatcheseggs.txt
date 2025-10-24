@@ -43,7 +43,7 @@ while running:
         
         
     if current_time - last_spawn_time > spawn_interval:
-        x = random.randint(20, 580) 
+        x = random.randint(40, 600) 
         y = 0  
         speed_x =  random.choice([-4, -3, -2, -1, 0, 1, 2, 3, 4])
         balls.append([x, y, speed_x])
@@ -101,4 +101,5 @@ while running:
 
 
 pygame.quit()
+
 
