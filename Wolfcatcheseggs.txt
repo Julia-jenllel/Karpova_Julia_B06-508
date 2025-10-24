@@ -74,7 +74,7 @@ while running:
         dx = basket_x - x
         dy = basket_y - y
         distance = (dx**2 + dy**2)**0.5
-        if distance < 30:  
+        if distance < 45:  
             score += 1
             catch.play()  
         elif y > 400:  
@@ -98,5 +98,6 @@ while running:
     screen.blit(missed_text, (15, 55))
     pygame.display.flip()
     clock.tick(60)
+
 
 pygame.quit()
