@@ -77,7 +77,7 @@ while running:
         if distance < 45:  
             score += 1
             catch.play()  
-        elif y > 400:  
+        elif y > 500:  
             missed += 1
             if missed >= 3:
                 print("Вы проиграли! 3 яйца разбились!")
@@ -101,5 +101,6 @@ while running:
 
 
 pygame.quit()
+
 
 
