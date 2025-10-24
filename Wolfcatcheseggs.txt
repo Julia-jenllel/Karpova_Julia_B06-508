@@ -12,8 +12,8 @@ catch = pygame.mixer.Sound("catch.wav")
 backeggspage = pygame.image.load("backfone.png")
 basketpage = pygame.image.load("basket.png").convert()
 
-basketpage = pygame.transform.scale(basketpage, (80, 80))
-eggpage = pygame.transform.scale(eggpage, (75, 45))
+basketpage = pygame.transform.scale(basketpage, (100, 100))
+eggpage = pygame.transform.scale(eggpage, (85, 55))
 
 basketpage.set_colorkey((255, 255, 255)) 
 eggpage.set_colorkey((255, 255, 255)) 
@@ -101,3 +101,4 @@ while running:
 
 
 pygame.quit()
+
